@@ -1,3 +1,3 @@
-import part6.main_run as p
+import part7.main_run as p
 
 p.main()
