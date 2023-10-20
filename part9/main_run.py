@@ -7,9 +7,10 @@ BACKGROUND_COLOR = "#B1DDC6"
 # Part 1: Importing the data
 # Importing the data from the csv file
 try:
-    words_to_learn = pd.read_csv("data/words_to_learn.csv")
+    words_to_learn = pd.read_csv("/home/dario/PycharmProjects/Day-31-Flash-Card-App-Capstone-Project/data"
+                                 "/words_to_learn.csv")
 except FileNotFoundError:
-  df = pd.read_csv("data/french_words.csv")
+  df = pd.read_csv("/home/dario/PycharmProjects/Day-31-Flash-Card-App-Capstone-Project/data/french_words.csv")
   to_learn = df.to_dict(orient="records")
 else:
   to_learn = words_to_learn.to_dict(orient="records")
@@ -21,13 +22,13 @@ flip_timer = 0
 def main():
   global flip_timer, current_card
 
-  def card_learned():
+  def is_known():
     global current_card
-    to_learn.remove(current_card)
-    words_to_learn = pd.DataFrame(to_learn)
-    words_to_learn.to_csv("data/words_to_learn.csv", index=False)
-    next_card()
-    #print(len(to_learn))
+    to_learn.remove(current_card) #Right line
+    words_to_learn = pd.DataFrame(to_learn) #right line but different variable name
+    words_to_learn.to_csv("/home/dario/PycharmProjects/Day-31-Flash-Card-App-Capstone-Project/data/words_to_learn.csv", index=False)#right line but different variable name
+    next_card()#right line
+    #print(len(to_learn)) #right line
   
   def next_card():
     global current_card, flip_timer
@@ -78,7 +79,7 @@ def main():
   wrong_button.grid(row=1, column=0)
   right_button = Button(image=right_img,
                         highlightthickness=0,
-                        command=card_learned)
+                        command=is_known)
   right_button.grid(row=1, column=1)
 
   next_card()
